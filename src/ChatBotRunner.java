@@ -14,7 +14,7 @@ public class ChatBotRunner
 	public static void main(String[] args)
 	{
 		ChatBot1 chatbot1 = new ChatBot1();
-		ChatBot2 chatbot2 = new ChatBot2();
+		RhymesBot chatbot2 = new RhymesBot();
 		ChatBot3 chatbot3 = new ChatBot3();
 		
 
@@ -29,8 +29,8 @@ public class ChatBotRunner
 			//This example has only chatbot1
 
 
-
-			chatbot1.chatLoop(statement);
+			chatbot2.chatLoop(statement);
+			//chatbot1.chatLoop(statement);
 
 
 			statement = in.nextLine();

@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author Brooklyn Tech CS Department
  * @version September 2018
  */
-public class ChatBot2
+public class RhymesBot
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
@@ -41,7 +41,7 @@ public class ChatBot2
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hey, do you want to hear some rhymes?";
 	}
 	
 	/**
@@ -62,13 +62,13 @@ public class ChatBot2
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
+			response = "Why not?";
                 	emotion--;
 		}
 		
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "yes") >= 0)
 		{
-			response = "More like LevinTheDream amiright?";
+			response = "Type in any popular rhyme names";
 			emotion++;
 		}
 
@@ -108,7 +108,7 @@ public class ChatBot2
 		}
 		int psn = findKeyword (statement, "I want to", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Why do you want to " + restOfStatement + "?";
+		return "Do you want " + restOfStatement + "?";
 	}
 
 	
