@@ -243,7 +243,7 @@ public class AnimalFactBot
 			"So, would you like to go for a walk?",
 			"Could you say that again?"
 	};
-	private String [] randomBoringResponse = {"The heart of a shrimp is located in its head","A snail can sleep for three years");
+	private String [] randomBoringResponse = {"The heart of a shrimp is located in its head","A snail can sleep for three yearss");
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
 	
 }
