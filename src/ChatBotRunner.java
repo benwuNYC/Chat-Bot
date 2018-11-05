@@ -13,7 +13,7 @@ public class ChatBotRunner
 	 */
 	public static void main(String[] args)
 	{
-		ChatBot1 chatbot1 = new ChatBot1();
+		MathBot chatbot1 = new MathBot();
 		RhymesBot chatbot2 = new RhymesBot();
 		AnimalFactBot chatbot3 = new AnimalFactBot();
 		
