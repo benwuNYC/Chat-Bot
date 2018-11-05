@@ -19,7 +19,7 @@ public class ChatBotRunner
 		
 
 		Scanner in = new Scanner (System.in);
-		System.out.println("Welcome to the chatbot, nice to meet you.");
+		System.out.println("Welcome to chatbot for kids!");
 		String statement = in.nextLine();
 
 
@@ -29,8 +29,9 @@ public class ChatBotRunner
 			//This example has only chatbot1
 
 
-			chatbot2.chatLoop(statement);
 			//chatbot1.chatLoop(statement);
+			//chatbot2.chatLoop(statement);
+			chatbot3.chatLoop(statement);
 
 
 			statement = in.nextLine();

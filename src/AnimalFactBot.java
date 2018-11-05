@@ -1,12 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-//lol
-/**
- * A program to carry on conversations with a human user.
- * This version:
- * @author Brooklyn Tech CS Department
- * @version September 2018
- */
 public class AnimalFactBot
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
@@ -15,49 +8,34 @@ public class AnimalFactBot
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
 	 * @param statement the statement typed by the user
 	 */
-	public void chatLoop(String statement)
-	{
-		Scanner in = new Scanner (System.in);
-		System.out.println (getGreeting());
+	public void chatLoop(String statement) {
+        Scanner in = new Scanner(System.in);
+        System.out.println(getGreeting());
+        while (!statement.equals("Bye")) {
+            statement = in.nextLine();
+            //getResponse handles the user reply
+            System.out.println(getResponse(statement));
+        }
+    }
 
-
-		while (!statement.equals("Bye"))
-		{
-
-
-			statement = in.nextLine();
-			//getResponse handles the user reply
-			System.out.println(getResponse(statement));
-		}
-	}
-	/**
-	 * Get a default greeting 	
-	 * @return a greeting
-	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Are you ready to learn about animals!";
 	}
-	/**
-	 * Gives a response to a user statement
-	 * 
-	 * @param statement
-	 *            the user statement
-	 * @return a response based on the rules given
-	 */
+
 	public String getResponse(String statement)
 	{
 		String response = "";
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Is that a Yes or No?";
 		}
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "No") >= 0)
 		{
-			response = "Why so negative?";
+			response = "Why not? There's so many interesting facts to learn about animals!";
                 	emotion--;
 		}
-		else if (findKeyword(statement, "levin") >= 0)
+		else if (findKeyword(statement, "Yes") >= 0)
 		{
 			response = "More like LevinTheDream amiright?";
 			emotion++;
@@ -94,7 +72,7 @@ public class AnimalFactBot
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want to", 0);
+		int psn = findKeyword (statement, "I want to learn about", 0);
 		String restOfStatement = statement.substring(psn + 9).trim();
 		return "Why do you want to " + restOfStatement + "?";
 	}
@@ -214,13 +192,6 @@ public class AnimalFactBot
 	{
 		return findKeyword (statement, goal, 0);
 	}
-	
-
-
-	/**
-	 * Pick a default response to use if nothing else fits.
-	 * @return a non-committal string
-	 */
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
@@ -245,4 +216,9 @@ public class AnimalFactBot
 	};
 	private String [] randomBoringResponse = {"The heart of a shrimp is located in its head","A snail can sleep for three years"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] MammalFact = {};
+	private String [] AmphibianFact = {};
+	private String [] FishFact = {};
+	private String [] BirdFact = {};
+	private String [] ReptileFact = {};
 }
