@@ -220,5 +220,5 @@ public class AnimalFactBot
 	private String [] AmphibianFact = {};
 	private String [] FishFact = {};
 	private String [] BirdFact = {};
-	private String [] ReptileFact = {};
+	private String [] ReptileFact = {}; // 
 }
