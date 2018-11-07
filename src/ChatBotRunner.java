@@ -29,8 +29,8 @@ public class ChatBotRunner
 			//This example has only chatbot1
 
 
-			//chatbot1.chatLoop(statement);
-			chatbot2.chatLoop(statement);
+			chatbot1.chatLoop(statement);
+			//chatbot2.chatLoop(statement);
 			//chatbot3.chatLoop(statement);
 
 
