@@ -216,9 +216,9 @@ public class AnimalFactBot
 	};
 	private String [] randomBoringResponse = {"The heart of a shrimp is located in its head","A snail can sleep for three years"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
-	private String [] MammalFact = {};
-	private String [] AmphibianFact = {};
-	private String [] FishFact = {};
-	private String [] BirdFact = {};
-	private String [] ReptileFact = {}; // 
+	private String [] MammalFact = {"A giraffe's tongue is 20 inches long. They use it to clean their own ears","A hard working mole can dig a hole up to 300 feet deep over night","A whale's heart beats very slowly. As slow as once every 6 seconds","Beavers can hold their breath for up to 15 minutes","Even though it has a hump, a camel's spine is straight"};
+	private String [] AmphibianFact = {"Most amphibians have thin, moist skin that helps them to breathe","Frogs swallow their food whole. The size of what they can eat is determined by the size of their mouths and their stomach","A group of frogs is called an army","All amphibians have gills, some only as larvae and others for their entire lives","Frogs cannot live in salt water"};
+	private String [] FishFact = {"Whales can't swim backwards","A jellyfish isn't really a fish","Baby sharks are called pups","An electric eel can produce a powerful jolt of electricity of up to 600 volts","A few fish, like the spotted climbing perch, are able to breathe oxygen from the air"};
+	private String [] BirdFact = {"The peregrine falcon can dive as fast as 200 mph when hunting prey","Although an ostrich cannot fly, it can run up to 60 mph.","Owls can rotate their heads almost 360°, but they cannot move their eyes.","Many birds are considered incredible navigators: when transported 400 miles from its home, a champion racing pigeon can find its way back in 1 day.","Some birds like penguins and emus are classified as flightless: despite having wings, they cannot fly."};
+	private String [] ReptileFact = {"Crocodiles have been known to swallow rocks so they can dive deeper into the water.","Some snakes have over 300 pairs of ribs.","The shell of a turtle is made up of a bunch of bones (around 60) all connected together.","Lizards and snakes smell with their tongues.","Turtles have no ears to hear with, but they are thought to have excellent eye sight and sense of smell. They can also feel vibrations from loud sounds."}; //
 }
