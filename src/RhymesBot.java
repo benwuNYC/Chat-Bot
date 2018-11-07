@@ -73,11 +73,11 @@ public class RhymesBot
 		}
 
 		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to", 0) >= 0)
+		else if (findKeyword(statement, "twinkle", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
-		else if (findKeyword(statement, "I want",0) >= 0)
+		else if (findKeyword(statement, "baa",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
 		}	
@@ -106,9 +106,19 @@ public class RhymesBot
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want to", 0);
-		String restOfStatement = statement.substring(psn + 9).trim();
-		return "Do you want " + restOfStatement + "?";
+		int psn = findKeyword (statement, "twinkle", 0);
+		String restOfStatement = statement.substring(psn).trim();
+		System.out.println("Do you want to hear " + restOfStatement + "?");
+
+		Scanner input = new Scanner(System.in);
+		String response = input.nextLine();
+		if (response.equals("yes")){
+			System.out.println("Twinkle Twinkle Little Stars\n" + "How I wonder what you are\n" +  "Up above the world so high\n" + "Like a diamond in the sky");
+		}
+		else {
+			System.out.println("Why not?");
+		}
+		return "Do you want to hear anything else?";
 	}
 
 	
@@ -129,9 +139,28 @@ public class RhymesBot
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
+		int psn = findKeyword (statement, "baa", 0);
+		String restOfStatement = statement.substring(psn).trim();
+		System.out.println("Do you want to hear " + restOfStatement + "?");
+
+		Scanner input = new Scanner(System.in);
+		String response = "";
+		response = input.nextLine();
+		if (response.equals("yes")){
+			System.out.println("Baa, baa, black sheep\n" +
+					"Have you any wool?\n" +
+					"Yes sir, yes sir, three bags full.\n" +
+					"One for the master,\n" +
+					"And one for the dame,\n" +
+					"And one for the little boy\n" +
+					"Who lives down the lane.");
+			emotion++;
+		}
+		else {
+			System.out.println("Why not :(");
+			emotion--;
+		}
+		return "Do you want to hear anything else";
 	}
 	
 	
