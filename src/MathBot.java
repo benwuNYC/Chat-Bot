@@ -59,10 +59,12 @@ public class MathBot
 			response = "Say something, please.";
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "add") >= 0)
 		{
-			response = "Why so negative?";
-                	emotion--;
+			Scanner addtwonumbers = new Scanner(System.in);
+			response = "Choose your first number you wish to add.";
+			int x;
+				int x =	addtwonumbers.nextLine();
 		}
 		
 		else if (findKeyword(statement, "levin") >= 0)
@@ -104,6 +106,7 @@ public class MathBot
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
 	 */
+
 	private String transformAddinStatement(String statement){
 		statement = statement.trim();
 		String lastChar = statement.substring(statement.length()-1);
@@ -112,7 +115,7 @@ public class MathBot
 			statement = statement.substring(0, statement.length() - 1);
 		}
 		int psn = findKeyword(statement,"Math", 0);
-		String returnThis = ("What do you want to know?");
+		String returnThis = ("Which numbers would you like me to add together? Or would you like an example of addition?");
 		return ""+returnThis+"";
 	}
 	private String transformIWantToStatement(String statement)
