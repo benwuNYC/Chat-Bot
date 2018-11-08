@@ -114,9 +114,11 @@ public class RhymesBot
 		String response = input.nextLine();
 		if (response.equals("yes")){
 			System.out.println("Twinkle Twinkle Little Stars\n" + "How I wonder what you are\n" +  "Up above the world so high\n" + "Like a diamond in the sky");
+			emotion ++;
 		}
 		else {
 			System.out.println("Why not?");
+			emotion--;
 		}
 		return "Do you want to hear anything else?";
 	}
@@ -153,14 +155,20 @@ public class RhymesBot
 					"One for the master,\n" +
 					"And one for the dame,\n" +
 					"And one for the little boy\n" +
-					"Who lives down the lane.");
+					"Who lives down the lane.\n" +
+					"Do you want to hear another rhyme?");
 			emotion++;
 		}
 		else {
-			System.out.println("Why not :(");
+			System.out.println("Why not :( Do you want to hear anything else?");
 			emotion--;
 		}
-		return "Do you want to hear anything else";
+		response = (input.nextLine()).toLowerCase();
+		if (response.equals("yes") || response.equals("sure"))
+		{
+			response = getResponse(response);
+		}
+		return getRandomResponse();
 	}
 	
 	
