@@ -40,7 +40,7 @@ public class MathBot
 	 */	
 	public String getGreeting()
 	{
-		return "Hi, what is up?";
+		return "Hi, would you like to do some math?";
 	}
 	
 	/**
@@ -62,8 +62,24 @@ public class MathBot
 		else if (findKeyword(statement, "add") >= 0)
 		{
 			Scanner addtwonumbers = new Scanner(System.in);
-			response = "Choose your first number you wish to add.";
+			System.out.println("Choose the first number you want to add!");
 			int x = addtwonumbers.nextInt();
+			System.out.println("Choose the next number you want to add!");
+			int y = addtwonumbers.nextInt();
+			int z = x + y;
+			response = ""+z+"";
+		}
+		else if (findKeyword(statement, "subtract") >= 0){
+			Scanner subtracttwonumbers = new Scanner(System.in);
+			System.out.println("Which number do you want to be subtracted from?");
+			int x = subtracttwonumbers.nextInt();
+			System.out.println("How much do you want to subtract from the number before?");
+			int y = subtracttwonumbers.nextInt();
+			int z = x + y;
+			response = ""+z+"";
+		}
+		else if(findKeyword(statement,"no") >= 0){
+			response = "But math is fun! Why would you not want to learn about math?";
 		}
 		
 		else if (findKeyword(statement, "levin") >= 0)
@@ -286,9 +302,11 @@ public class MathBot
 			"Hmmm.",
 			"Do you really think so?",
 			"You don't say.",
-			"It's all boolean to me.",
-			"So, would you like to go for a walk?",
-			"Could you say that again?"
+			"I'm sure you know, that 2+4 =6?",
+			"The quotient is the result you get when you divide a number by another number",
+			"The dividend is the number you divide by.",
+			"The sum is the answer you get when you add two or more numbers together",
+			"The product is the answer you get when you multiply two or more numbers."
 	};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
