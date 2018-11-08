@@ -63,8 +63,7 @@ public class MathBot
 		{
 			Scanner addtwonumbers = new Scanner(System.in);
 			response = "Choose your first number you wish to add.";
-			int x;
-				int x =	addtwonumbers.nextLine();
+			int x = addtwonumbers.nextInt();
 		}
 		
 		else if (findKeyword(statement, "levin") >= 0)
