@@ -11,7 +11,7 @@ public class MathBot
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
-
+	Scanner twonumbers = new Scanner(System.in);
 	/**
 	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
 	 * @param statement the statement typed by the user
@@ -58,24 +58,52 @@ public class MathBot
 		{
 			response = "Say something, please.";
 		}
+		else if (findKeyword(statement, "yes")>=0){
+			response = "Great! I can add, multiply, subtract, or divide. What do you want to do?";
+			emotion++;
+		}
+		else if (findKeyword(statement, "no")>=0){
+			response = "Why not? Math is fun!";
+			emotion--;
+		}
+		else if (findKeyword(statement, "hate math") >= 0){
+			response = "Why do you hate math?";
+		}
+		else if (findKeyword(statement, "like math") >= 0){
+			response = "Why do you like math";
+		}
 
 		else if (findKeyword(statement, "add") >= 0)
 		{
-			Scanner addtwonumbers = new Scanner(System.in);
 			System.out.println("Choose the first number you want to add!");
-			int x = addtwonumbers.nextInt();
+			int x = twonumbers.nextInt();
 			System.out.println("Choose the next number you want to add!");
-			int y = addtwonumbers.nextInt();
+			int y = twonumbers.nextInt();
 			int z = x + y;
 			response = ""+z+"";
 		}
 		else if (findKeyword(statement, "subtract") >= 0){
-			Scanner subtracttwonumbers = new Scanner(System.in);
 			System.out.println("Which number do you want to be subtracted from?");
-			int x = subtracttwonumbers.nextInt();
+			int x = twonumbers.nextInt();
 			System.out.println("How much do you want to subtract from the number before?");
-			int y = subtracttwonumbers.nextInt();
+			int y = twonumbers.nextInt();
 			int z = x + y;
+			response = ""+z+"";
+		}
+		else if (findKeyword(statement, "multiply")>= 0){
+			System.out.println("Choose your first number!");
+			int x = twonumbers.nextInt();
+			System.out.println("Choose your next number!");
+			int y = twonumbers.nextInt();
+			int z = x*y;
+			response = ""+z+"";
+		}
+		else if (findKeyword(statement, "divide")>= 0){
+			System.out.println("Choose the number you want to be divided!");
+			int x = twonumbers.nextInt();
+			System.out.println("Choose the number you want to divide by!");
+			int y = twonumbers.nextInt();
+			int z = x/y;
 			response = ""+z+"";
 		}
 		else if(findKeyword(statement,"no") >= 0){
@@ -121,17 +149,19 @@ public class MathBot
 	 * @param statement the user statement, assumed to contain "I want to"
 	 * @return the transformed statement
 	 */
-
-	private String transformAddinStatement(String statement){
+	private String transformIHateStatement(String statement)
+	{
 		statement = statement.trim();
-		String lastChar = statement.substring(statement.length()-1);
+		String lastChar = statement.substring(statement
+				.length() - 1);
 		if (lastChar.equals("."))
 		{
-			statement = statement.substring(0, statement.length() - 1);
+			statement = statement.substring(0, statement
+					.length() - 1);
 		}
-		int psn = findKeyword(statement,"Math", 0);
-		String returnThis = ("Which numbers would you like me to add together? Or would you like an example of addition?");
-		return ""+returnThis+"";
+		int psn = findKeyword (statement, "I hate", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Why do you hate " + restOfStatement + "?";
 	}
 	private String transformIWantToStatement(String statement)
 	{
@@ -287,11 +317,11 @@ public class MathBot
 	private String getRandomResponse ()
 	{
 		Random r = new Random ();
-		if (emotion == 0)
+		if (emotion >= -2 && emotion <= 2)
 		{	
 			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
 		}
-		if (emotion < 0)
+		if (emotion < -3)
 		{	
 			return randomAngryResponses [r.nextInt(randomAngryResponses.length)];
 		}	
@@ -306,9 +336,11 @@ public class MathBot
 			"The quotient is the result you get when you divide a number by another number",
 			"The dividend is the number you divide by.",
 			"The sum is the answer you get when you add two or more numbers together",
-			"The product is the answer you get when you multiply two or more numbers."
+			"The product is the answer you get when you multiply two or more numbers.",
+			"Do you like math?",
+			"Would you like to do math?"
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomAngryResponses = {"You are unworthy of the knowledge I possess.","You shall not know.","Begone, mere mortal. My knowledge is not for the likes of your kind.","Would you like to do math yet?"};
+	private String [] randomHappyResponses = {"How many fingers do you have on one hand?", "Why are we all here?","The possibilities are endless!", "Would you like to do math yet?"};
 	
 }
