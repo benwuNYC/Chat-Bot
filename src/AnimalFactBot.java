@@ -33,7 +33,7 @@ public class AnimalFactBot
 		}
 		else if (findKeyword(statement, "Yes") >= 0)
 		{
-			response = "More like LevinTheDream amiright?";
+			response = "Yay! Which would you like to learn about? Mammals, birds, reptiles, amphibians or fish?";
 			emotion++;
 		}
 		// Response transforming I want to statement
@@ -44,7 +44,11 @@ public class AnimalFactBot
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if ((findKeyword(statement,"I",0) && (findKeyword(statement,"you",0));
+
+        {
+        }
 		else
 		{
 			response = getRandomResponse();
