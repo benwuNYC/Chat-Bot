@@ -4,10 +4,6 @@ public class AnimalFactBot
 {
 	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
 	int emotion = 0;
-	/**
-	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
-	 * @param statement the statement typed by the user
-	 */
 	public void chatLoop(String statement) {
         Scanner in = new Scanner(System.in);
         System.out.println(getGreeting());
@@ -55,12 +51,6 @@ public class AnimalFactBot
 		}
 		return response;
 	}
-	/**
-	 * Take a statement with "I want to <something>." and transform it into 
-	 * "Why do you want to <something>?"
-	 * @param statement the user statement, assumed to contain "I want to"
-	 * @return the transformed statement
-	 */
 	private String transformIWantToStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -73,15 +63,9 @@ public class AnimalFactBot
 					.length() - 1);
 		}
 		int psn = findKeyword (statement, "I want to learn about", 0);
-		String restOfStatement = statement.substring(psn + 9).trim();
+		String restOfStatement = statement.substring(psn + 10).trim();
 		return "Why do you want to " + restOfStatement + "?";
 	}
-	/**
-	 * Take a statement with "I want <something>." and transform it into 
-	 * "Would you really be happy if you had <something>?"
-	 * @param statement the user statement, assumed to contain "I want"
-	 * @return the transformed statement
-	 */
 	private String transformIWantStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -97,14 +81,9 @@ public class AnimalFactBot
 		String restOfStatement = statement.substring(psn + 6).trim();
 		return "Would you really be happy if you had " + restOfStatement + "?";
 	}
-	/**
-	 * Take a statement with "I <something> you" and transform it into 
-	 * "Why do you <something> me?"
-	 * @param statement the user statement, assumed to contain "I" followed by "you"
-	 * @return the transformed statement
-	 */
+
 	private String transformIYouStatement(String statement)
-	{
+    {
 		//  Remove the final period, if there is one
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
@@ -214,8 +193,8 @@ public class AnimalFactBot
 			"So, would you like to go for a walk?",
 			"Could you say that again?"
 	};
-	private String [] randomBoringResponse = {"The heart of a shrimp is located in its head","A snail can sleep for three years"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomBoringResponse = {"You're really dull. "};
+	private String [] randomHappyResponses = {"You're boring!"};
 	private String [] MammalFact = {"A giraffe's tongue is 20 inches long. They use it to clean their own ears","A hard working mole can dig a hole up to 300 feet deep over night","A whale's heart beats very slowly. As slow as once every 6 seconds","Beavers can hold their breath for up to 15 minutes","Even though it has a hump, a camel's spine is straight"};
 	private String [] AmphibianFact = {"Most amphibians have thin, moist skin that helps them to breathe","Frogs swallow their food whole. The size of what they can eat is determined by the size of their mouths and their stomach","A group of frogs is called an army","All amphibians have gills, some only as larvae and others for their entire lives","Frogs cannot live in salt water"};
 	private String [] FishFact = {"Whales can't swim backwards","A jellyfish isn't really a fish","Baby sharks are called pups","An electric eel can produce a powerful jolt of electricity of up to 600 volts","A few fish, like the spotted climbing perch, are able to breathe oxygen from the air"};
