@@ -71,6 +71,16 @@ public class RhymesBot
 			response = "Type in any popular rhyme names";
 			emotion++;
 		}
+		else if (findKeyword(statement, "sure") >= 0)
+		{
+			response = "Type in any popular rhyme names";
+			emotion++;
+		}
+		else if (findKeyword(statement, "yea") >= 0)
+		{
+			response = "Type in any popular rhyme names";
+			emotion++;
+		}
 
 		// Response transforming I want to statement
 		else if (findKeyword(statement, "twinkle", 0) >= 0)
@@ -80,9 +90,18 @@ public class RhymesBot
 		else if (findKeyword(statement, "baa",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if (findKeyword(statement, "row", 0) >= 0)
+		{
+			response = transformIYouStatement(statement);
+		}
+		else if (findKeyword(statement, "happy",0) >= 0)
+		{
+			response = transformRhyme4Statement(statement);
+		}
 		else
 		{
+			System.out.println("Sorry I don't know that song");
 			response = getRandomResponse();
 		}
 		
@@ -121,9 +140,7 @@ public class RhymesBot
 			emotion--;
 		}
 		return "Do you want to hear anything else?";
-	}
-
-	
+		}
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
 	 * "Would you really be happy if you had <something>?"
@@ -155,20 +172,14 @@ public class RhymesBot
 					"One for the master,\n" +
 					"And one for the dame,\n" +
 					"And one for the little boy\n" +
-					"Who lives down the lane.\n" +
-					"Do you want to hear another rhyme?");
+					"Who lives down the lane.\n");
 			emotion++;
 		}
 		else {
-			System.out.println("Why not :( Do you want to hear anything else?");
+			System.out.println("Why not? :(");
 			emotion--;
 		}
-		response = (input.nextLine()).toLowerCase();
-		if (response.equals("yes") || response.equals("sure"))
-		{
-			response = getResponse(response);
-		}
-		return getRandomResponse();
+		return "\nDo you want to hear anything else?";
 	}
 	
 	
@@ -180,7 +191,6 @@ public class RhymesBot
 	 */
 	private String transformIYouStatement(String statement)
 	{
-		//  Remove the final period, if there is one
 		statement = statement.trim();
 		String lastChar = statement.substring(statement
 				.length() - 1);
@@ -189,14 +199,85 @@ public class RhymesBot
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		
-		int psnOfI = findKeyword (statement, "I", 0);
-		int psnOfYou = findKeyword (statement, "you", psnOfI);
-		
-		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
-		return "Why do you " + restOfStatement + " me?";
+		int psn = findKeyword (statement, "row", 0);
+		String restOfStatement = statement.substring(psn).trim();
+		System.out.println("Do you want to hear " + restOfStatement + "?");
+
+		Scanner input = new Scanner(System.in);
+		String response = "";
+		response = input.nextLine();
+		if (response.equals("yes")){
+			System.out.println("Row, row, row your boat\n" +
+					"Gently down the stream\n" +
+					"Merrily, merrily, merrily, merrily\n" +
+					"Life is but a dream\n" +
+					"\n" +
+					"Row, row, row your boat\n" +
+					"Gently up the creek If you see a little mouse\n" +
+					"Don't forget to squeak!\n" +
+					"\n" +
+					"Row, row, row your boat\n" +
+					"Gently down the stream If you see a crocodile\n" +
+					"Don't forget to scream!\n" +
+					"\n" +
+					"Row, row, row your boat\n" +
+					"Gently to the shore\n" +
+					"If you see a lion\n" +
+					"Don’t forget to roar!");
+			emotion++;
+		}
+		else {
+			System.out.println("Why not? :( Do you want to hear anything else?");
+			emotion--;
+		}
+		return "\nDo you want to hear anything else?";
 	}
-	
+
+	private String transformRhyme4Statement(String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "row", 0);
+		String restOfStatement = statement.substring(psn).trim();
+		System.out.println("Do you want to hear " + restOfStatement + "?");
+
+		Scanner input = new Scanner(System.in);
+		String response = "";
+		response = input.nextLine();
+		if (response.equals("yes")){
+			System.out.println("If you're happy and you know it, clap your hands (clap clap)\n"+
+			"If you're happy and you know it, clap your hands (clap clap)\n"+
+			"If you're happy and you know it, then your face will surely show it\n"+
+			"If you're happy and you know it, clap your hands. (clap clap)\n"+
+
+			"If you're happy and you know it, stomp your feet (stomp stomp)\n"+
+			"If you're happy and you know it, stomp your feet (stomp stomp)\n"+
+			"If you're happy and you know it, then your face will surely show it\n"+
+			"If you're happy and you know it, stomp your feet. (stomp stomp)\n"+
+
+			"If you're happy and you know it, shout Hurray! (hoo-ray!)\n"+
+			"If you're happy and you know it, shout Hurray! (hoo-ray!)\n"+
+			"If you're happy and you know it, then your face will surely show it\n"+
+			"If you're happy and you know it, shout Hurray! (hoo-ray!)\n"+
+
+			"If you're happy and you know it, do all three (clap-clap, stomp-stomp, hoo-ray!)\n"+
+			"If you're happy and you know it, do all three (clap-clap, stomp-stomp, hoo-ray!)\n"+
+			"If you're happy and you know it, then your face will surely show it\n"+
+			"If you're happy and you know it, do all three. (clap-clap, stomp-stomp, hoo-ray!)\n");
+			emotion++;
+		}
+		else {
+			System.out.println("Why not? :( Do you want to hear anything else?");
+			emotion--;
+		}
+		return "Do you want to hear anything else?";
+	}
 
 	
 	
@@ -307,5 +388,4 @@ public class RhymesBot
 	};
 	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
 	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
-	
 }
