@@ -59,11 +59,11 @@ public class MathBot
 			response = "Say something, please.";
 		}
 		else if (findKeyword(statement, "yes")>=0){
-			response = "Great! I can add, multiply, subtract, or divide. What do you want to do?";
+			response = "Great! I can add, multiply, subtract, or divide. If you ask for explanation, I can also tell you the rules for each one. What do you want to do?";
 			emotion++;
 		}
 		else if (findKeyword(statement, "no")>=0){
-			response = "Why not? Math is fun!";
+			response = "Why not? Math is fun! Why would you not want to learn about math?";
 			emotion--;
 		}
 		else if (findKeyword(statement, "hate math") >= 0){
@@ -72,7 +72,23 @@ public class MathBot
 		else if (findKeyword(statement, "like math") >= 0){
 			response = "Why do you like math";
 		}
-
+		else if (findKeyword(statement, "explanation")>=0){
+			response = "Multiplication is repeated adding of one number, by the amount of the other." +
+					"  23" +
+					"x 11" +
+					"----" +
+					"  23" +
+					" 23" +
+					"----" +
+					" 253" +
+					"Division is seeing how many times one number goes into another." +
+					"       " +
+					"	   ----" +
+					"	3 | 66" +
+					"3 goes into 6 twice, so you put a two over the first 6. Subtract 6, and then now move onto the next line." +
+					"Afterwards the three goes into the 6 two more times, and subtract 6 again. The answer is 22" +
+					"Addition and subtraction is easy, so I won't bother explaining that to you ._.";
+		}
 		else if (findKeyword(statement, "add") >= 0)
 		{
 			System.out.println("Choose the first number you want to add!");
@@ -106,10 +122,6 @@ public class MathBot
 			int z = x/y;
 			response = ""+z+"";
 		}
-		else if(findKeyword(statement,"no") >= 0){
-			response = "But math is fun! Why would you not want to learn about math?";
-		}
-		
 		else if (findKeyword(statement, "levin") >= 0)
 		{
 			response = "More like LevinTheDream, amiright?";
