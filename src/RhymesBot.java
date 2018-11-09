@@ -63,9 +63,15 @@ public class RhymesBot
 		else if (findKeyword(statement, "no") >= 0)
 		{
 			response = "Why not?";
-                	emotion--;
+			emotion--;
+			Scanner input = new Scanner(System.in);
+			String reason = input.nextLine();
+
+			if (reason.length() >= 0)
+			{
+				System.out.println(randomAngryResponses);
+			}
 		}
-		
 		else if (findKeyword(statement, "yes") >= 0)
 		{
 			response = "Type in any popular rhyme names";
@@ -101,10 +107,10 @@ public class RhymesBot
 		}
 		else
 		{
-			System.out.println("Sorry I don't know that song");
-			response = getRandomResponse();
+			System.out.println("Sorry I don't recognize the song: " + statement);
+			System.out.println("Type in another rhyme. For example: Twinkle twinkle little star or baa baa black sheep");
 		}
-		
+
 		return response;
 	}
 	
