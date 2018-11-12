@@ -29,8 +29,6 @@ public class MathBot
 			statement = in.nextLine();
 			//getResponse handles the user reply
 			System.out.println(getResponse(statement));
-
-
 		}
 
 	}
@@ -73,21 +71,7 @@ public class MathBot
 			response = "Why do you like math";
 		}
 		else if (findKeyword(statement, "explanation")>=0){
-			response = "Multiplication is repeated adding of one number, by the amount of the other." +
-					"  23" +
-					"x 11" +
-					"----" +
-					"  23" +
-					" 23" +
-					"----" +
-					" 253" +
-					"Division is seeing how many times one number goes into another." +
-					"       " +
-					"	   ----" +
-					"	3 | 66" +
-					"3 goes into 6 twice, so you put a two over the first 6. Subtract 6, and then now move onto the next line." +
-					"Afterwards the three goes into the 6 two more times, and subtract 6 again. The answer is 22" +
-					"Addition and subtraction is easy, so I won't bother explaining that to you ._.";
+			response = "Multiplication is repeated adding of one number, by the amount of the other.\n Division is the number of times a number goes into the other. Addition and Subtraction you should know because I don't want to tell you.";
 		}
 		else if (findKeyword(statement, "add") >= 0)
 		{
@@ -146,7 +130,11 @@ public class MathBot
 		else if (findKeyword(statement, "I want",0) >= 0)
 		{
 			response = transformIWantStatement(statement);
-		}	
+		}
+		else if  (findKeyword(statement, "I hate",0) >= 0)
+		{
+		response = transformIHateStatement(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
