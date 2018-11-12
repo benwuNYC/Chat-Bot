@@ -2,10 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * A program to carry on conversations with a human user.
+ * A program to carry on conversations with a human user about rhymes.
  * This version:
- * @author Brooklyn Tech CS Department
- * @version September 2018
+ * @author Abbdul Rafi
+ * @version November 2018
  */
 public class RhymesBot
 {
@@ -41,7 +41,7 @@ public class RhymesBot
 	 */	
 	public String getGreeting()
 	{
-		return "Hey, do you want to hear some rhymes?";
+		return "Hey, do you want to read some rhymes?";
 	}
 	
 	/**
@@ -105,10 +105,14 @@ public class RhymesBot
 		{
 			response = transformRhyme4Statement(statement);
 		}
+		else if (findKeyword(statement, "mary", 0) >= 0)
+		{
+			response =
+		}
 		else
 		{
 			System.out.println("Sorry I don't recognize the song: " + statement);
-			System.out.println("Type in another rhyme. For example: Twinkle twinkle little star or baa baa black sheep");
+			System.out.println("Type in another rhyme. For example: Twinkle twinkle little star, baa baa black sheep, Row row row your boat, Happy and you know it clap your hands.");
 		}
 
 		return response;
@@ -392,6 +396,6 @@ public class RhymesBot
 			"So, would you like to go for a walk?",
 			"Could you say that again?"
 	};
-	private String [] randomAngryResponses = {"Bahumbug.", "Harumph", "The rage consumes me!"};
-	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "You make me feel like a brand new pair of shoes."};
+	private String [] randomAngryResponses = {"Why so serious?", "Rhymes are so fun!", "Come on you can do better", "The rage consumes me!"};
+	private String [] randomHappyResponses = {"H A P P Y, what's that spell?", "Today is a good day", "If your happy and you know it clap your hands", "Smiling is the best charity :)"};
 }

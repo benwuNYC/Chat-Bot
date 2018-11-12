@@ -25,18 +25,29 @@ public class ChatBotRunner
 
 		while (!statement.equals("Bye"))
 		{
-			//Use Logic to control which chatbot is handling the conversation\
-			//This example has only chatbot1
+			Scanner input = new Scanner (System.in);
+			System.out.println("Hey, do you want to learn some math?");
+			String statement1 = input.nextLine();
 
+			if (statement1.equals("yes"))
+			{
+			chatbot1.chatLoop(statement);
+			}
+			else if (statement1.equals("no"))
+			{
 
-			//chatbot1.chatLoop(statement);
-			chatbot2.chatLoop(statement);
-			//chatbot3.chatLoop(statement);
+				System.out.println("Do you want to read some rhymes?");
+				statement1 = input.nextLine();
 
-
+				if (statement1.equals("yes"))
+				{
+				chatbot2.chatLoop(statement);
+				}
+				else {
+				chatbot3.chatLoop(statement);
+				}
+		}
 			statement = in.nextLine();
-
-
 		}
 	}
 
