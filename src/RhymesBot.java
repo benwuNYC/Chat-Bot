@@ -149,7 +149,7 @@ public class RhymesBot
 			System.out.println("Why not?");
 			emotion--;
 		}
-		return "Do you want to hear anything else?";
+		return "Do you want to read anything else?";
 		}
 	/**
 	 * Take a statement with "I want <something>." and transform it into 
@@ -237,7 +237,7 @@ public class RhymesBot
 			emotion++;
 		}
 		else {
-			System.out.println("Why not? :( Do you want to hear anything else?");
+			System.out.println("Why not? :( Do you want to read anything else?");
 			emotion--;
 		}
 		return "\nDo you want to read anything else?";
@@ -283,7 +283,7 @@ public class RhymesBot
 			emotion++;
 		}
 		else {
-			System.out.println("Why not? :( Do you want to hear anything else?");
+			System.out.println("Why not? :( Do you want to read anything else?");
 			emotion--;
 		}
 		return "Do you want to read anything else?";
