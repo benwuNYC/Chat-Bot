@@ -41,7 +41,7 @@ public class RhymesBot
 	 */	
 	public String getGreeting()
 	{
-		return "Hey, do you want to read some rhymes?";
+		return "Hello kids, ready to read some fun rhymes?";
 	}
 	
 	/**
@@ -107,7 +107,7 @@ public class RhymesBot
 		}
 		else if (findKeyword(statement, "mary", 0) >= 0)
 		{
-			response =
+			response = transformRhymes5Statement(statement);
 		}
 		else
 		{
@@ -137,7 +137,7 @@ public class RhymesBot
 		}
 		int psn = findKeyword (statement, "twinkle", 0);
 		String restOfStatement = statement.substring(psn).trim();
-		System.out.println("Do you want to hear " + restOfStatement + "?");
+		System.out.println("Do you want to read " + restOfStatement + "?");
 
 		Scanner input = new Scanner(System.in);
 		String response = input.nextLine();
@@ -170,7 +170,7 @@ public class RhymesBot
 		}
 		int psn = findKeyword (statement, "baa", 0);
 		String restOfStatement = statement.substring(psn).trim();
-		System.out.println("Do you want to hear " + restOfStatement + "?");
+		System.out.println("Do you want to read " + restOfStatement + "?");
 
 		Scanner input = new Scanner(System.in);
 		String response = "";
@@ -182,14 +182,14 @@ public class RhymesBot
 					"One for the master,\n" +
 					"And one for the dame,\n" +
 					"And one for the little boy\n" +
-					"Who lives down the lane.\n");
+					"Who lives down the lane.");
 			emotion++;
 		}
 		else {
 			System.out.println("Why not? :(");
 			emotion--;
 		}
-		return "\nDo you want to hear anything else?";
+		return "\nDo you want to read anything else?";
 	}
 	
 	
@@ -211,7 +211,7 @@ public class RhymesBot
 		}
 		int psn = findKeyword (statement, "row", 0);
 		String restOfStatement = statement.substring(psn).trim();
-		System.out.println("Do you want to hear " + restOfStatement + "?");
+		System.out.println("Do you want to read " + restOfStatement + "?");
 
 		Scanner input = new Scanner(System.in);
 		String response = "";
@@ -240,7 +240,7 @@ public class RhymesBot
 			System.out.println("Why not? :( Do you want to hear anything else?");
 			emotion--;
 		}
-		return "\nDo you want to hear anything else?";
+		return "\nDo you want to read anything else?";
 	}
 
 	private String transformRhyme4Statement(String statement)
@@ -255,7 +255,7 @@ public class RhymesBot
 		}
 		int psn = findKeyword (statement, "row", 0);
 		String restOfStatement = statement.substring(psn).trim();
-		System.out.println("Do you want to hear " + restOfStatement + "?");
+		System.out.println("Do you want to read " + restOfStatement + "?");
 
 		Scanner input = new Scanner(System.in);
 		String response = "";
@@ -286,7 +286,54 @@ public class RhymesBot
 			System.out.println("Why not? :( Do you want to hear anything else?");
 			emotion--;
 		}
-		return "Do you want to hear anything else?";
+		return "Do you want to read anything else?";
+	}
+
+	private String transformRhymes5Statement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "mary", 0);
+		String restOfStatement = statement.substring(psn).trim();
+		System.out.println("Do you want to read " + restOfStatement + "?");
+
+		Scanner input = new Scanner(System.in);
+		String response = "";
+		response = input.nextLine();
+		if (response.equals("yes")){
+			System.out.println("Mary had a little lamb,\n" +
+					"Its fleece was white as snow;\n" +
+					"And everywhere that Mary went\n" +
+					"The lamb was sure to go.\n" +
+					"\n" +
+					"It followed her to school one day,\n" +
+					"Which was against the rule;\n" +
+					"It made the children laugh and play\n" +
+					"To see a lamb at school.\n" +
+					"\n" +
+					"And so the teacher turned it out,\n" +
+					"But still it lingered near,\n" +
+					"And waited patiently about\n" +
+					"Till Mary did appear.\n" +
+					"\n" +
+					"Why does the lamb love Mary so?\n" +
+					"The eager children cry;\n" +
+					"Why, Mary loves the lamb, you know,\n" +
+					"The teacher did reply.");
+			emotion++;
+		}
+		else {
+			System.out.println("Why not? :(");
+			emotion--;
+		}
+		return "\nDo you want to read anything else?";
 	}
 
 	
