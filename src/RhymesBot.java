@@ -14,7 +14,7 @@ public class RhymesBot
 
 
 	/**
-	 * Runs the conversation for this particular chatbot, should allow switching to other chatbots.
+	 * Runs the conversation for this particular chatbot- the RhymeBot.
 	 * @param statement the statement typed by the user
 	 */
 	public void chatLoop(String statement)
@@ -36,8 +36,8 @@ public class RhymesBot
 
 	}
 	/**
-	 * Get a default greeting 	
-	 * @return a greeting
+	 *
+	 * @return a greeting to the user and asks a general questions.
 	 */	
 	public String getGreeting()
 	{
@@ -45,7 +45,7 @@ public class RhymesBot
 	}
 	
 	/**
-	 * Gives a response to a user statement
+	 * Gives a response to a user statement.
 	 * 
 	 * @param statement
 	 *            the user statement
@@ -60,9 +60,9 @@ public class RhymesBot
 			response = "Say something, please.";
 		}
 
-		else if (findKeyword(statement, "no") >= 0)
+		else if (findKeyword(statement, "no", 0) >= 0)
 		{
-			response = "Why not?";
+			response = "Why not? :(";
 			emotion--;
 			Scanner input = new Scanner(System.in);
 			String reason = input.nextLine();
@@ -111,7 +111,7 @@ public class RhymesBot
 		}
 		else
 		{
-			System.out.println("Sorry I don't recognize the song: " + statement);
+			System.out.println("Sorry I don't recognize the rhyme: " + statement);
 			System.out.println("Type in another rhyme. For example: Twinkle twinkle little star, baa baa black sheep, Row row row your boat, Happy and you know it clap your hands.");
 		}
 
@@ -119,9 +119,9 @@ public class RhymesBot
 	}
 	
 	/**
-	 * Take a statement with "I want to <something>." and transform it into 
-	 * "Why do you want to <something>?"
-	 * @param statement the user statement, assumed to contain "I want to"
+	 * Take a statement with the name of the rhyme and transform it into
+	 * "Are you sure you want to read <statement>"
+	 * @param statement the user statement, assumed to contain a rhymes song name
 	 * @return the transformed statement
 	 */
 	private String transformIWantToStatement(String statement)
@@ -253,7 +253,7 @@ public class RhymesBot
 			statement = statement.substring(0, statement
 					.length() - 1);
 		}
-		int psn = findKeyword (statement, "row", 0);
+		int psn = findKeyword (statement, "happy", 0);
 		String restOfStatement = statement.substring(psn).trim();
 		System.out.println("Do you want to read " + restOfStatement + "?");
 
