@@ -13,20 +13,12 @@ public class AnimalFactBot {
     public void chatLoop(String statement) {
         Scanner in = new Scanner(System.in);
         System.out.println(getGreeting());
-
-
         while (!statement.equals("Bye")) {
-
-
             statement = in.nextLine();
             //getResponse handles the user reply
             System.out.println(getResponse(statement));
-
-
         }
-
     }
-
     /**
      * Get a default greeting
      *
@@ -64,7 +56,12 @@ public class AnimalFactBot {
         }
         return response;
     }
-
+    /**
+     * Take a statement with the name of what user wants to learn and transforms it
+     * "Why do you want to learn <statement>"
+     * @param statement the user statement, assumed to contain a type of animal
+     * @return the transformed statement
+     */
     private String transformIWantToStatement(String statement) {
         //  Remove the final period, if there is one
         statement = statement.trim();
@@ -76,8 +73,14 @@ public class AnimalFactBot {
         }
         int psn = findKeyword(statement, "I want to learn about", 0);
         String restOfStatement = statement.substring(psn + 10).trim();
-        return "Why do you want to " + restOfStatement + "?";
+        return "Why do you want to learn about" + restOfStatement + "?";
     }
+    /**
+     * Take a statement with "I want <something>." and transform it into
+     * "Why do you want a <something>?"
+     * @param statement the user statement, assumed to contain "I want a
+     * @return the transformed statement
+     */
 
     private String transformIWantStatement(String statement) {
         //  Remove the final period, if there is one
@@ -88,9 +91,9 @@ public class AnimalFactBot {
             statement = statement.substring(0, statement
                     .length() - 1);
         }
-        int psn = findKeyword(statement, "I want", 0);
-        String restOfStatement = statement.substring(psn + 6).trim();
-        return "Would you really be happy if you had " + restOfStatement + "?";
+        int psn = findKeyword(statement, "I want a", 0);
+        String restOfStatement = statement.substring(psn + 8).trim();
+        return "Why do you want a " + restOfStatement + "?";
     }
 
     /**
@@ -144,7 +147,6 @@ public class AnimalFactBot {
 
         return -1;
     }
-
     /**
      * Search for one word in phrase.  The search is not case sensitive.
      * This method will check that the given goal is not a substring of a longer string
@@ -169,6 +171,10 @@ public class AnimalFactBot {
         return randomHappyResponses[r.nextInt(randomHappyResponses.length)];
     }
 
+    /**
+     * @param: User's input of Bird, Mammal, Fish, Amphibian, Reptile
+     * @return Facts based on user's inputs
+     */
     private String getAnimalFacts() {
         Scanner scan2 = new Scanner(System.in);
         String statement2 = scan2.nextLine();
@@ -189,8 +195,6 @@ public class AnimalFactBot {
             return "Sorry, that is not an animal type!";
         }
     }
-
-
 	private String [] randomNeutralResponses = {"I have many interesting facts! What do you want to learn about?"};
 	private String [] randomBoringResponse = {"You seem like you've learned all the facts! Feel free to try out our math and rhyme bot! "};
 	private String [] randomHappyResponses = {"Do you want to learn more?"};

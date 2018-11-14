@@ -16,14 +16,17 @@ public class ChatBotRunner {
         AnimalFactBot chatbot3 = new AnimalFactBot();
 
 
-        Scanner in = new Scanner(System.in);
         System.out.println("Welcome to chatbot for kids!");
+        System.out.println("What is your name?");
+        Scanner n = new Scanner(System.in);
+        String name = n.nextLine();
+        Scanner in = new Scanner(System.in);
         String statement = in.nextLine();
 
 
         while (!statement.equals("Bye")) {
             Scanner input = new Scanner(System.in);
-            System.out.println("Hey, do you want to learn about math, animals, or rhymes?");
+            System.out.println(name+ ", do you want to learn about math, animals, or rhymes?");
             String statement1 = input.nextLine();
             String phrase = statement.trim().toLowerCase();
             statement1 = statement1.toLowerCase();
