@@ -1,72 +1,96 @@
 import java.util.Random;
 import java.util.Scanner;
-public class AnimalFactBot
-{
-	//emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
-	int emotion = 0;
-	public void chatLoop(String statement) {
+/**
+ * A program to carry on conversations with a human user about rhymes.
+ * This version:
+ * @author Benjamin Wu
+ * @version November 2018
+ */
+public class AnimalFactBot {
+    //emotion can alter the way our bot responds. Emotion can become more negative or positive over time.
+    int emotion = 0;
+
+    public void chatLoop(String statement) {
         Scanner in = new Scanner(System.in);
         System.out.println(getGreeting());
+
+
         while (!statement.equals("Bye")) {
+
+
             statement = in.nextLine();
             //getResponse handles the user reply
             System.out.println(getResponse(statement));
+
+
         }
+
     }
 
-	public String getGreeting()
-	{
-		return "Are you ready to learn about animals!";
-	}
+    /**
+     * Get a default greeting
+     *
+     * @return a greeting
+     */
+    public String getGreeting() {
+        return "Are you ready to learn about animals?";
+    }
 
-	public String getResponse(String statement)
-	{
-		String response = "";
-		if (statement.length() == 0)
-		{
-			response = "Is that a Yes or No?";
-		}
-		else if (findKeyword(statement, "No") >= 0)
-		{
-			response = "Why not? There's so many interesting facts to learn about animals!";
-                	emotion--;
-		}
-		else if (findKeyword(statement, "Yes") >= 0)
-		{
-			response = "Yay! Which would you like to learn about? Mammals, birds, reptiles, amphibians or fish?";
-			emotion++;
-		}
-		// Response transforming I want to statement
-		else if (findKeyword(statement, "I want to", 0) >= 0)
-		{
-			response = transformIWantToStatement(statement);
-		}
-		else if (findKeyword(statement, "I want",0) >= 0)
-		{
-			response = transformIWantStatement(statement);
-		}
-		else
-		{
-			response = getRandomResponse();
-		}
-		return response;
-	}
-	private String transformIWantToStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		int psn = findKeyword (statement, "I want to learn about", 0);
-		String restOfStatement = statement.substring(psn + 10).trim();
-		return "Why do you want to " + restOfStatement + "?";
-	}
-	
+    /**
+     * Gives a response to a user statement
+     *
+     * @param statement the user statement
+     * @return a response based on the rules given
+     */
+    public String getResponse(String statement) {
+        String response = "";
+        if (statement.length() == 0) {
+            response = "Is that a yes or no?";
+        } else if (findKeyword(statement, "no") >= 0) {
+            response = "Why not? There's so many interesting facts to learn about animals!";
+            emotion--;
+        } else if (findKeyword(statement, "yes") >= 0) {
+            System.out.println("Yay! Which would you like to learn about? Mammals, birds, reptiles, amphibians or fish?");
+            emotion++;
+            Scanner scan2= new Scanner(System.in);
+            String statement2 = scan2.nextLine();
+            Random x = new Random();
+            if (statement2.equals("Mammal")) {
+                return MammalFact[x.nextInt(MammalFact.length)];
+            } else if (statement2.equals("Amphibian")) {
+                return AmphibianFact[x.nextInt(AmphibianFact.length)];
+            } else if (statement2.equals("Bird")) {
+                return BirdFact[x.nextInt(BirdFact.length)];
+            } else if (statement2.equals("Reptile")) {
+                return ReptileFact[x.nextInt(ReptileFact.length)];
+            } else if (statement2.equals("Fish")) {
+                return FishFact[x.nextInt(ReptileFact.length)];
+            }
+        }
+        // Response transforming I want to statement
+        else if (findKeyword(statement, "I want to", 0) >= 0) {
+            response = transformIWantToStatement(statement);
+        } else if (findKeyword(statement, "I want", 0) >= 0) {
+            response = transformIWantStatement(statement);
+        } else {
+            response = getRandomResponse();
+        }
+        return response;
+    }
+    private String transformIWantToStatement(String statement) {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals(".")) {
+            statement = statement.substring(0, statement
+                    .length() - 1);
+        }
+        int psn = findKeyword(statement, "I want to learn about", 0);
+        String restOfStatement = statement.substring(psn + 10).trim();
+        return "Why do you want to " + restOfStatement + "?";
+    }
+
 	private String transformIWantStatement(String statement)
 	{
 		//  Remove the final period, if there is one
@@ -98,8 +122,7 @@ public class AnimalFactBot
 	 * @return the index of the first occurrence of goal in
 	 *         statement or -1 if it's not found
 	 */
-	private int findKeyword(String statement, String goal,
-			int startPos)
+	private int findKeyword(String statement, String goal, int startPos)
 	{
 		String phrase = statement.trim().toLowerCase();
 		goal = goal.toLowerCase();
@@ -168,6 +191,12 @@ public class AnimalFactBot
 		}	
 		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
 	}
+
+	private String getFishFacts()
+    {                           
+
+
+    }
 	private String [] randomNeutralResponses = {"I have many interesting facts! What do you want to learn about?"};
 	private String [] randomBoringResponse = {"You seem like you've learned all the facts! Feel free to try out our math and rhyme bot! "};
 	private String [] randomHappyResponses = {"Yay thanks for talking with the AnimalFactBot!"};
