@@ -175,7 +175,7 @@ public class AnimalFactBot {
         String phrase1 = statement2.trim().toLowerCase();
         statement2 = statement2.toLowerCase();
         Random x = new Random();
-        if (statement2.equals("mammal")) {
+        if (statement2.equals("mammals")) {
             return MammalFact[x.nextInt(MammalFact.length)];
         } else if (statement2.equals("amphibians")) {
             return AmphibianFact[x.nextInt(AmphibianFact.length)];
@@ -186,14 +186,14 @@ public class AnimalFactBot {
         } else if (statement2.equals("fish")) {
             return FishFact[x.nextInt(ReptileFact.length)];
         } else {
-            return "Try Another Animal";
+            return "Sorry, that is not an animal type!";
         }
     }
 
 
 	private String [] randomNeutralResponses = {"I have many interesting facts! What do you want to learn about?"};
 	private String [] randomBoringResponse = {"You seem like you've learned all the facts! Feel free to try out our math and rhyme bot! "};
-	private String [] randomHappyResponses = {"Yay thanks for talking with the AnimalFactBot,Do you want to learn more?"};
+	private String [] randomHappyResponses = {"Do you want to learn more?"};
 	private String [] MammalFact = {"A giraffe's tongue is 20 inches long. They use it to clean their own ears","A hard working mole can dig a hole up to 300 feet deep over night","A whale's heart beats very slowly. As slow as once every 6 seconds","Beavers can hold their breath for up to 15 minutes","Even though it has a hump, a camel's spine is straight"};
 	private String [] AmphibianFact = {"Most amphibians have thin, moist skin that helps them to breathe","Frogs swallow their food whole. The size of what they can eat is determined by the size of their mouths and their stomach","A group of frogs is called an army","All amphibians have gills, some only as larvae and others for their entire lives","Frogs cannot live in salt water"};
 	private String [] FishFact = {"Whales can't swim backwards","A jellyfish isn't really a fish","Baby sharks are called pups","An electric eel can produce a powerful jolt of electricity of up to 600 volts","A few fish, like the spotted climbing perch, are able to breathe oxygen from the air"};
