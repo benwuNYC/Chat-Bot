@@ -52,20 +52,7 @@ public class AnimalFactBot {
         } else if (findKeyword(statement, "yes") >= 0) {
             System.out.println("Yay! Which would you like to learn about? Mammals, birds, reptiles, amphibians or fish?");
             emotion++;
-            Scanner scan2= new Scanner(System.in);
-            String statement2 = scan2.nextLine();
-            Random x = new Random();
-            if (statement2.equals("Mammal")) {
-                return MammalFact[x.nextInt(MammalFact.length)];
-            } else if (statement2.equals("Amphibian")) {
-                return AmphibianFact[x.nextInt(AmphibianFact.length)];
-            } else if (statement2.equals("Bird")) {
-                return BirdFact[x.nextInt(BirdFact.length)];
-            } else if (statement2.equals("Reptile")) {
-                return ReptileFact[x.nextInt(ReptileFact.length)];
-            } else if (statement2.equals("Fish")) {
-                return FishFact[x.nextInt(ReptileFact.length)];
-            }
+            return getAnimalFacts();
         }
         // Response transforming I want to statement
         else if (findKeyword(statement, "I want to", 0) >= 0) {
@@ -77,6 +64,7 @@ public class AnimalFactBot {
         }
         return response;
     }
+
     private String transformIWantToStatement(String statement) {
         //  Remove the final period, if there is one
         statement = statement.trim();
@@ -91,115 +79,121 @@ public class AnimalFactBot {
         return "Why do you want to " + restOfStatement + "?";
     }
 
-	private String transformIWantStatement(String statement)
-	{
-		//  Remove the final period, if there is one
-		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
-		{
-			statement = statement.substring(0, statement
-					.length() - 1);
-		}
-		int psn = findKeyword (statement, "I want", 0);
-		String restOfStatement = statement.substring(psn + 6).trim();
-		return "Would you really be happy if you had " + restOfStatement + "?";
-	}
-	/**
-	 * Search for one word in phrase. The search is not case
-	 * sensitive. This method will check that the given goal
-	 * is not a substring of a longer string (so, for
-	 * example, "I know" does not contain "no").
-	 *
-	 * @param statement
-	 *            the string to search
-	 * @param goal
-	 *            the string to search for
-	 * @param startPos
-	 *            the character of the string to begin the
-	 *            search at
-	 * @return the index of the first occurrence of goal in
-	 *         statement or -1 if it's not found
-	 */
-	private int findKeyword(String statement, String goal, int startPos)
-	{
-		String phrase = statement.trim().toLowerCase();
-		goal = goal.toLowerCase();
-		// The only change to incorporate the startPos is in
-		// the line below
-		int psn = phrase.indexOf(goal, startPos);
-		// Refinement--make sure the goal isn't part of a
-		// word
-		while (psn >= 0)
-		{
-			// Find the string of length 1 before and after
-			// the word
-			String before = " ", after = " ";
-			if (psn > 0)
-			{
-				before = phrase.substring(psn - 1, psn);
-			}
-			if (psn + goal.length() < phrase.length())
-			{
-				after = phrase.substring(
-						psn + goal.length(),
-						psn + goal.length() + 1);
-			}
-			// If before and after aren't letters, we've
-			// found the word
-			if (((before.compareTo("a") < 0) || (before
-					.compareTo("z") > 0)) // before is not a
-											// letter
-					&& ((after.compareTo("a") < 0) || (after
-							.compareTo("z") > 0)))
-			{
-				return psn;
-			}
-
-			// The last position didn't work, so let's find
-			// the next, if there is one.
-			psn = phrase.indexOf(goal, psn + 1);
-
-		}
-
-		return -1;
-	}
-
-	/**
-	 * Search for one word in phrase.  The search is not case sensitive.
-	 * This method will check that the given goal is not a substring of a longer string
-	 * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.
-	 * @param statement the string to search
-	 * @param goal the string to search for
-	 * @return the index of the first occurrence of goal in statement or -1 if it's not found
-	 */
-	private int findKeyword(String statement, String goal)
-	{
-		return findKeyword (statement, goal, 0);
-	}
-	private String getRandomResponse ()
-	{
-		Random r = new Random ();
-		if (emotion == 0)
-		{	
-			return randomNeutralResponses [r.nextInt(randomNeutralResponses.length)];
-		}
-		if (emotion < 0)
-		{	
-			return randomBoringResponse [r.nextInt(randomBoringResponse.length)];
-		}	
-		return randomHappyResponses [r.nextInt(randomHappyResponses.length)];
-	}
-
-	private String getFishFacts()
-    {                           
-
-
+    private String transformIWantStatement(String statement) {
+        //  Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement
+                .length() - 1);
+        if (lastChar.equals(".")) {
+            statement = statement.substring(0, statement
+                    .length() - 1);
+        }
+        int psn = findKeyword(statement, "I want", 0);
+        String restOfStatement = statement.substring(psn + 6).trim();
+        return "Would you really be happy if you had " + restOfStatement + "?";
     }
+
+    /**
+     * Search for one word in phrase. The search is not case
+     * sensitive. This method will check that the given goal
+     * is not a substring of a longer string (so, for
+     * example, "I know" does not contain "no").
+     *
+     * @param statement the string to search
+     * @param goal      the string to search for
+     * @param startPos  the character of the string to begin the
+     *                  search at
+     * @return the index of the first occurrence of goal in
+     * statement or -1 if it's not found
+     */
+    private int findKeyword(String statement, String goal, int startPos) {
+        String phrase = statement.trim().toLowerCase();
+        goal = goal.toLowerCase();
+        // The only change to incorporate the startPos is in
+        // the line below
+        int psn = phrase.indexOf(goal, startPos);
+        // Refinement--make sure the goal isn't part of a
+        // word
+        while (psn >= 0) {
+            // Find the string of length 1 before and after
+            // the word
+            String before = " ", after = " ";
+            if (psn > 0) {
+                before = phrase.substring(psn - 1, psn);
+            }
+            if (psn + goal.length() < phrase.length()) {
+                after = phrase.substring(
+                        psn + goal.length(),
+                        psn + goal.length() + 1);
+            }
+            // If before and after aren't letters, we've
+            // found the word
+            if (((before.compareTo("a") < 0) || (before
+                    .compareTo("z") > 0)) // before is not a
+                    // letter
+                    && ((after.compareTo("a") < 0) || (after
+                    .compareTo("z") > 0))) {
+                return psn;
+            }
+
+            // The last position didn't work, so let's find
+            // the next, if there is one.
+            psn = phrase.indexOf(goal, psn + 1);
+
+        }
+
+        return -1;
+    }
+
+    /**
+     * Search for one word in phrase.  The search is not case sensitive.
+     * This method will check that the given goal is not a substring of a longer string
+     * (so, for example, "I know" does not contain "no").  The search begins at the beginning of the string.
+     *
+     * @param statement the string to search
+     * @param goal      the string to search for
+     * @return the index of the first occurrence of goal in statement or -1 if it's not found
+     */
+    private int findKeyword(String statement, String goal) {
+        return findKeyword(statement, goal, 0);
+    }
+
+    private String getRandomResponse() {
+        Random r = new Random();
+        if (emotion == 0) {
+            return randomNeutralResponses[r.nextInt(randomNeutralResponses.length)];
+        }
+        if (emotion < 0) {
+            return randomBoringResponse[r.nextInt(randomBoringResponse.length)];
+        }
+        return randomHappyResponses[r.nextInt(randomHappyResponses.length)];
+    }
+
+    private String getAnimalFacts() {
+        Scanner scan2 = new Scanner(System.in);
+        String statement2 = scan2.nextLine();
+        String phrase1 = statement2.trim().toLowerCase();
+        statement2 = statement2.toLowerCase();
+        Random x = new Random();
+        if (statement2.equals("mammal")) {
+            return MammalFact[x.nextInt(MammalFact.length)];
+        } else if (statement2.equals("amphibians")) {
+            return AmphibianFact[x.nextInt(AmphibianFact.length)];
+        } else if (statement2.equals("birds")) {
+            return BirdFact[x.nextInt(BirdFact.length)];
+        } else if (statement2.equals("reptiles")) {
+            return ReptileFact[x.nextInt(ReptileFact.length)];
+        } else if (statement2.equals("fish")) {
+            return FishFact[x.nextInt(ReptileFact.length)];
+        } else {
+            return "Try Another Animal";
+        }
+    }
+
+
 	private String [] randomNeutralResponses = {"I have many interesting facts! What do you want to learn about?"};
 	private String [] randomBoringResponse = {"You seem like you've learned all the facts! Feel free to try out our math and rhyme bot! "};
-	private String [] randomHappyResponses = {"Yay thanks for talking with the AnimalFactBot!"};
+	private String [] randomHappyResponses = {"Yay thanks for talking with the AnimalFactBot,Do you want to learn more?"};
 	private String [] MammalFact = {"A giraffe's tongue is 20 inches long. They use it to clean their own ears","A hard working mole can dig a hole up to 300 feet deep over night","A whale's heart beats very slowly. As slow as once every 6 seconds","Beavers can hold their breath for up to 15 minutes","Even though it has a hump, a camel's spine is straight"};
 	private String [] AmphibianFact = {"Most amphibians have thin, moist skin that helps them to breathe","Frogs swallow their food whole. The size of what they can eat is determined by the size of their mouths and their stomach","A group of frogs is called an army","All amphibians have gills, some only as larvae and others for their entire lives","Frogs cannot live in salt water"};
 	private String [] FishFact = {"Whales can't swim backwards","A jellyfish isn't really a fish","Baby sharks are called pups","An electric eel can produce a powerful jolt of electricity of up to 600 volts","A few fish, like the spotted climbing perch, are able to breathe oxygen from the air"};
